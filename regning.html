@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Regning for {{ gjeng }}</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            -webkit-print-color-adjust: exact !important;
+        }
+        h1 {
+            font-size: 1.2em;
+        }
+        table{
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        thead tr{
+            background-color: yellow;
+            border-bottom: 1px solid black;
+        }
+        thead tr th{
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            padding-left: 2em;
+            padding-right: 2em;
+        }
+        tr.sum_row {
+            border-top: 1px solid black;
+            border-bottom: 4px double black;
+            font-weight: bold;
+        }
+        td:nth-child(2) {
+            text-align: right;
+            border-left: 1px solid black;
+        }
+        tr:nth-child(2n) {
+            background-color: #ddd;
+        }
+        td {
+            padding: 0.2em 0.5em;
+        }
+        .kontonr {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Regning fra VK bar, BSF {{ date}}</h1>
+    <h2>Til gjeng: {{ gjeng }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Beløp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }},00 kr</td>
+            </tr>
+            {% endfor %}
+
+            <tr class="sum_row">
+                <td>Totalt</td>
+                <td>{{ total }},00 kr</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="kontonr">Kontonr: 0539.43.36981</p>
+</body>
+</html>
